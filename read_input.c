@@ -21,7 +21,7 @@ char *readline()
 			exit(EXIT_SUCCESS);
 		else
 		{
-			printf("Readline Error\n");
+			perror("getline");
 			exit(EXIT_FAILURE);
 		}
 	}

@@ -7,7 +7,7 @@
  *
  * Return: 0 for success, -1 for failure
  */
-int main(int ac, char **av)
+int main(void)
 {
 	int status;
 	char **arguments;
@@ -17,7 +17,7 @@ int main(int ac, char **av)
 		printf("$ ");
 		line = readline();
 		arguments = splitline(line);
-		status = initialize_shell(arguments, NULL, av[0]);
+		status = initialize_shell(arguments, NULL);
 	} while (status);
 	return (status);
 }

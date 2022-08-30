@@ -7,7 +7,7 @@
  *
  * Return: 1 if initialization is successful, -1 if failed
  */
-int initialize_shell(char **args, char **envp, char *s)
+int initialize_shell(char **args, char **envp)
 {
 	pid_t pid;
 	int status;
@@ -15,14 +15,14 @@ int initialize_shell(char **args, char **envp, char *s)
 	pid = fork();
 	if (pid < 0)
 	{
-		printf("Forking error\n");
+		perror("Fork");
 		return (-1);
 	}
 	if (pid == 0)
 	{
-		if (execve(args[0], args, NULL) == -1)
+		if (execve(args[0], args, envp) == -1)
 		{
-			print_command_error(s);
+			perror("execve");
 			return (-1);
 		}
 		execve(args[0], args, NULL);
