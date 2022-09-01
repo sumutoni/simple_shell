@@ -11,7 +11,7 @@ int initialize_shell(char **args, char **envp)
 {
 	pid_t pid;
 	int status;
-	char **path, *delim, *program_file;
+	char *delim, *program_file;
 	
 	delim = ":";
 	if (!(*envp))
@@ -19,9 +19,8 @@ int initialize_shell(char **args, char **envp)
 		perror("getenv");
 		return (-1);
 	}
-	path = splitline(*envp, delim);
-
-	program_file = isfile_found(path, args[0]);
+	//path = splitline(*envp, delim);
+	program_file = isfile_found(envp, args[0]);
 	if (!program_file)
 	{
 		perror("access");
