@@ -2,8 +2,6 @@
 
 /**
  * main - launches the shell
- * @ac: number of arguments
- * @av: pointer to string arguments
  *
  * Return: 0 for success, -1 for failure
  */

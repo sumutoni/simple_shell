@@ -1,7 +1,7 @@
 #include "shell.h"
 /**
  * isfile_found - check if program executable file is
- * 	in $PATH
+ *	in $PATH
  * @path: array of directories in variable $PATH
  * @program: the executable file name to find in the path
  *
@@ -11,7 +11,7 @@ char *isfile_found(char **path, char *program)
 {
 	int i;
 	char *possible_path;
-	
+
 	for (i = 0; path[i]; i++)
 	{
 		possible_path = _strcat(path[i], program);

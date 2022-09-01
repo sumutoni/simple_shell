@@ -30,6 +30,7 @@ char *readline()
 /**
  * splitline - split a line commands and arguments
  * @args: line to split
+ * @delimiter: the delimiter
  *
  * Return: pointer to argument strings
  */
