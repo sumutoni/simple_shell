@@ -37,4 +37,5 @@ char *readline();
 char **splitline(char *line, char *delimiter);
 char *_strcat(char *dest, char *app);
 int _strlen(char *str);
+char *isfile_found(char **path, char *program);
 #endif
