@@ -33,10 +33,9 @@ char *readline()
  *
  * Return: pointer to argument strings
  */
-char **splitline(char *args)
+char **splitline(char *args, char *delimiter)
 {
 	char **arguments;
-	char *delimiter = " \n";
 	char *argument;
 	int index = 0;
 

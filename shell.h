@@ -34,6 +34,8 @@ typedef struct command
 int initialize_shell(char **args, char **envp);
 int execute(char **args);
 char *readline();
-char **splitline(char *line);
-
+char **splitline(char *line, char *delimiter);
+char *_strcat(char *dest, char *app);
+int _strlen(char *str);
+char *isfile_found(char **path, char *program);
 #endif

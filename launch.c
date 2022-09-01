@@ -11,13 +11,15 @@ int main(void)
 {
 	int status;
 	char **arguments;
-	char *line;
+	char *line, *delim, *path_env;
 
+	delim = " \n";
+	path_env = getenv("PATH");
 	do {
 		printf("$ ");
 		line = readline();
-		arguments = splitline(line);
-		status = initialize_shell(arguments, NULL);
+		arguments = splitline(line, delim);
+		status = initialize_shell(arguments, &path_env);
 	} while (status);
 	return (status);
 }

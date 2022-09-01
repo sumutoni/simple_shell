@@ -11,6 +11,22 @@ int initialize_shell(char **args, char **envp)
 {
 	pid_t pid;
 	int status;
+	char **path, *delim, *program_file;
+	
+	delim = ":";
+	if (!(*envp))
+	{
+		perror("getenv");
+		return (-1);
+	}
+	path = splitline(*envp, delim);
+
+	program_file = isfile_found(path, args[0]);
+	if (!program_file)
+	{
+		perror("access");
+		return (-1);
+	}
 
 	pid = fork();
 	if (pid < 0)
@@ -20,12 +36,12 @@ int initialize_shell(char **args, char **envp)
 	}
 	if (pid == 0)
 	{
-		if (execve(args[0], args, envp) == -1)
+		if (execve(program_file, args, NULL) == -1)
 		{
+			free(program_file);
 			perror("execve");
 			return (-1);
 		}
-		execve(args[0], args, NULL);
 	}
 	else
 	{
@@ -33,5 +49,6 @@ int initialize_shell(char **args, char **envp)
 			wait(&status);
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
+	free(program_file);
 	return (1);
 }
