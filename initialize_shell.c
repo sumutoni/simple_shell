@@ -23,8 +23,13 @@ int initialize_shell(char **args, char **envp)
 	program_file = isfile_found(envp, args[0]);
 	if (!program_file)
 	{
-		perror("access");
-		return (-1);
+		if (strtok(args[0], "/"))
+			program_file = args[0];
+		else
+		{
+			perror("access");
+			return (-1);
+		}
 	}
 
 	pid = fork();
