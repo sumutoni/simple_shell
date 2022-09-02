@@ -31,7 +31,7 @@ typedef struct command
 	char *name;
 	int (*pointer) (char **args);	
 } com;
-int initialize_shell(char **args, char **envp);
+int initialize_shell(char **args,char **path, char **envp);
 int execute(char **args);
 char *readline();
 char **splitline(char *line, char *delimiter);

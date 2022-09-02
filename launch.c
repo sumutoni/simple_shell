@@ -5,7 +5,7 @@
  *
  * Return: 0 for success, -1 for failure
  */
-int main(void)
+int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char **envs)
 {
 	int status;
 	char **arguments;
@@ -21,7 +21,7 @@ int main(void)
 		arguments = splitline(line, delim);
 		if (strcmp(arguments[0], "exit") == 0)
 			break;
-		status = initialize_shell(arguments, path);
+		status = initialize_shell(arguments, path, envs);
 	} while (status);
 	return (status);
 }

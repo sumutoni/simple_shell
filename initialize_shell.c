@@ -6,14 +6,14 @@
  *
  * Return: 1 if initialization is successful, -1 if failed
  */
-int initialize_shell(char **args, char **envp)
+int initialize_shell(char **args, char **path, char **envp)
 {
 	pid_t pid;
 	int status;
 	char *delim, *program_file;
 
 	delim = ":";
-	if (!(*envp))
+	if (!(*path))
 	{
 		perror("getenv");
 		return (-1);
@@ -21,7 +21,7 @@ int initialize_shell(char **args, char **envp)
 	if (**args == '/')
 		program_file = args[0];
 	else
-		program_file = isfile_found(envp, args[0]);
+		program_file = isfile_found(path, args[0]);
 	if (!program_file)
 	{
 		if (strtok(args[0], "/"))
@@ -41,7 +41,7 @@ int initialize_shell(char **args, char **envp)
 	}
 	if (pid == 0)
 	{
-		if (execve(program_file, args, NULL) == -1)
+		if (execve(program_file, args, envp) == -1)
 		{
 			free(program_file);
 			perror("execve");
