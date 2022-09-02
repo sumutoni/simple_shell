@@ -14,7 +14,6 @@ int main(void)
 	delim = " \n";
 	path_env = getenv("PATH");
 	path = splitline(path_env, ":");
-	printf("%s\n", path_env);
 	do {
 		printf("$ ");
 		line = readline();
