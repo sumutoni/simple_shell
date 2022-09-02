@@ -19,6 +19,8 @@ int main(void)
 		printf("$ ");
 		line = readline();
 		arguments = splitline(line, delim);
+		if (strcmp(arguments[0], "exit") == 0)
+			break;
 		status = initialize_shell(arguments, path);
 	} while (status);
 	return (status);
