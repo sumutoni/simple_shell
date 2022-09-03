@@ -12,7 +12,7 @@ int initialize_shell(char **args, char **path, char **envp)
 	int status;
 	char *program_file;
 
-	if (!(*path))
+	if (!(*envp))
 	{
 		perror("getenv");
 		return (-1);

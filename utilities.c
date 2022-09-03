@@ -25,7 +25,6 @@ char *isfile_found(char **path, char *program)
 			possible_path = NULL;
 		}
 	}
-
 	return (NULL);
 }
 

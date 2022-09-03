@@ -29,13 +29,16 @@ typedef struct variable
 typedef struct command
 {
 	char *name;
-	int (*pointer) (char **args);	
-} com;
-int initialize_shell(char **args,char **path, char **envp);
-int execute(char **args);
+	int (*pointer) (char **args, char **env);
+} command;
+command **coms;
+int initialize_shell(char **args, char **envp);
+int execute(char **args, char **env);
 char *readline();
 char **splitline(char *line, char *delimiter);
 char *_strcat(char *dest, char *app);
 int _strlen(char *str);
 char *isfile_found(char **path, char *program);
+int print_env(char **args, char **env);
+int add_command(char *, int (*pointer) (char **, char **));
 #endif
