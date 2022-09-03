@@ -1,5 +1,4 @@
 #include "shell.h"
-#define SIZE 5
 
 /**
  * execute - execute command passed to the shell
@@ -7,18 +6,19 @@
  *
  * Return: 1 for success, -1 for failure
  */
-int execute(char **args)
+int execute(char **args, char **env)
 {
-	com commands[SIZE];
 	int i, result = -1;
 
-	if (args[0] == NULL)
-		return (1);
-	for (i = 0; i < SIZE; i++)
+	if (args == NULL)
+		return (-1);
+	/*testing if add_command works well*/
+	add_command("env", &print_env);
+	for (i = 0; i < 1; i++)
 	{
-		if (strcmp(args[0], commands[i].name) == 0)
+		if (strcmp(args[0], coms[i]->name) == 0)
 		{
-			result = commands[i].pointer(args);
+			result = coms[i]->pointer(args, env);
 			return (result);
 		}
 	}
