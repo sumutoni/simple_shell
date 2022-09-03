@@ -75,3 +75,36 @@ int _strlen(char *str)
 	}
 	return (i);
 }
+/**
+ * _putchar - write one character to stdout
+ * @c: the character to print
+ *
+ * Return: number of chars printed
+ */
+int _putchar(char c)
+{
+	return (write(STDOUT_FILENO, &c, 1));
+}
+/**
+ * _getline - get a line of input from the stdin
+ * @buffer: where to store the resulting line
+ * @n: the size of the buffer
+ * @stream: the stream of input, where we read from
+ *
+ * Return: number of chars read
+ */
+int _getline(char *buffer, int n, FILE *stream)
+{
+	int len;
+
+	if (n == 0 && !buffer)
+	{
+		buffer = malloc(sizeof(char) * 1024);
+		if (!buffer)
+			return (0);
+		len = read(STDIN_FILENO, buffer, 1024);
+	else
+	{
+		len = read(STDIN_FILENO, buffer, n);
+
+

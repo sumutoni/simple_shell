@@ -10,9 +10,8 @@ int initialize_shell(char **args, char **path, char **envp)
 {
 	pid_t pid;
 	int status;
-	char *delim, *program_file;
+	char *program_file;
 
-	delim = ":";
 	if (!(*path))
 	{
 		perror("getenv");

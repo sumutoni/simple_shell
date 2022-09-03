@@ -14,14 +14,17 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 	delim = " \n";
 	path_env = getenv("PATH");
 	path = splitline(path_env, ":");
-	printf("%s\n", path_env);
 	do {
 		printf("$ ");
 		line = readline();
 		arguments = splitline(line, delim);
+
 		if (strcmp(arguments[0], "exit") == 0)
 			break;
-		status = initialize_shell(arguments, path, envs);
+		if (execute(arguments, envs) == 1)
+			status = 1;
+		else
+			status = initialize_shell(arguments, path, envs);
 	} while (status);
 	return (status);
 }
