@@ -24,9 +24,9 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 
 		if (strcmp(arguments[0], "exit") == 0)
 			break;
-		status = execute(arguments, env);
+		status = execute(arguments, envs);
 		if (status == -1)
-			status = initialize_shell(arguments, path);
+			status = initialize_shell(arguments, path, envs);
 	} while (status);
 	return (status);
 }

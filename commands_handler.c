@@ -34,10 +34,9 @@ int add_command(char *name, int (*pointer) (char **, char **))
 		return (-1);
 	if (check_command(name))
 		return (1);
-	com = malloc(sizeof(command));
+	com = malloc(sizeof(command) * 10);
 	if (!com)
 	{
-		free(com);
 		return (-1);
 	}
 	com->name = name;

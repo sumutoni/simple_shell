@@ -91,7 +91,7 @@ int _putchar(char c)
  * @stream: the stream of input, where we read from
  *
  * Return: number of chars read
- */
+ *
 int _getline(char *buffer, int n, FILE *stream)
 {
 	int len;
@@ -106,4 +106,6 @@ int _getline(char *buffer, int n, FILE *stream)
 	{
 		len = read(STDIN_FILENO, buffer, n);
 
-
+	}
+	}
+}*/

@@ -27,12 +27,12 @@ int print_env(__attribute__((unused))char **args, __attribute__((unused))char **
  *
  * Return: 1 on success, -1 otherwise
  */
-int change_dir(__attrbute__((unused))char **argv, __attribute__((unused))char **envp)
+int change_dir(__attribute__((unused))char **argv, __attribute__((unused))char **envp)
 {
 	if (argv[2])
 	{
 		perror("chdir");
 		return (-1);
 	}
-	return (chdir(arv[1]));
+	return (chdir(argv[1]));
 }			

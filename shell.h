@@ -31,14 +31,20 @@ typedef struct command
 	char *name;
 	int (*pointer) (char **args, char **env);
 } command;
-command **coms;
-int initialize_shell(char **args, char **envp);
+extern command **coms;
+
+int initialize_shell(char **args, char **envp, char **envs);
 int execute(char **args, char **env);
 char *readline();
+
 char **splitline(char *line, char *delimiter);
 char *_strcat(char *dest, char *app);
 int _strlen(char *str);
+
 char *isfile_found(char **path, char *program);
 int print_env(char **args, char **env);
 int add_command(char *, int (*pointer) (char **, char **));
+
+int _putchar(char c);
+int change_dir(__attribute__((unused))char **argv, __attribute__((unused))char **envp);
 #endif
