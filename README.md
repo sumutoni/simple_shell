@@ -6,4 +6,4 @@ Many linux distributions come with Bourne-Again shell(bash) and/or sh with them.
 our own interpretation of a simple shell. Our shell will be so simple that it won't handle pipes
 and redirections.
 
-[AUTHORS](https://github.com/sumutoni/AUTHORS)
+[AUTHORS](https://github.com/sumutoni/simple_shell/blob/master/AUTHORS.md)
