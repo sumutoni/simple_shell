@@ -9,12 +9,14 @@
 int execute(char **args, char **env)
 {
 	int i, result = -1;
+	command **coms;
 
 	if (args == NULL)
 		return (-1);
+	coms = malloc(sizeof(command));
 	/*testing if add_command works well*/
-	add_command("env", print_env);
-	add_command("cd", change_dir);
+	add_command("env", print_env, coms);
+	add_command("cd", change_dir, coms);
 	for (i = 0; i < 1; i++)
 	{
 		if (strcmp(args[0], coms[i]->name) == 0)

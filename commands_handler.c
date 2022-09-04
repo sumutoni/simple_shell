@@ -6,15 +6,16 @@
  *
  * Return: 1 if it exists, 0 if not
  */
-int check_command(char *name)
+int check_command(char *name, command **coms)
 {
+	int i;
+
 	if (!coms)
 		return (0);
-	while (*coms)
+	for (i = 0; coms[i]; i++)
 	{
-		if (strcmp((*coms)->name, name) == 0)
-			return (1);
-		coms++;
+		if (!(coms[i]->name) && strcmp(coms[i]->name, name) == 0)
+				return (1);
 	}
 	return (0);
 }
@@ -25,34 +26,39 @@ int check_command(char *name)
  *
  * Return: 1 for success -1 for failure
  */
-int add_command(char *name, int (*pointer) (char **, char **))
+int add_command(char *name, int (*pointer) (char **, char **), command **coms)
 {
-	command *com, **sub;
-	int count = 0;
+	command *com;/* **sub;*/
+	int count = 0, i;
 
 	if (!name || !pointer)
 		return (-1);
-	if (check_command(name))
+	if (check_command(name, coms))
 		return (1);
-	com = malloc(sizeof(command) * 10);
+	
+	com = malloc(sizeof(command));
 	if (!com)
 	{
+		perror("malloc");
 		return (-1);
 	}
 	com->name = name;
 	com->pointer = pointer;
-	if (!coms)
-	{
-		coms = malloc(sizeof(command *));
-		if (!coms)
-			return (-1);
-		*coms = NULL;
-	}
+
 	while (*coms)
 	{
 		count++;
 		coms++;
 	}
+	_realloc(coms, count, count+1);
+	for (i = 0; i < (count + 1); i++)
+	{
+		if (!coms[i])
+		{
+			coms[i] = com;
+		}
+	}
+	/*
 	count++;
 	sub = malloc(sizeof(command *) * count);
 	if (!sub)
@@ -66,5 +72,6 @@ int add_command(char *name, int (*pointer) (char **, char **))
 		coms++;
 	}
 	*coms = com;
+	*/
 	return (1);
 }
