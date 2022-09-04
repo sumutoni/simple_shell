@@ -15,7 +15,8 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 	path_env = getenv("PATH");
 	path = splitline(path_env, ":");
 	do {
-		printf("$ ");
+		_putchar('$');
+		_putchar(' ');
 		line = readline();
 		/* condition to check if newline character is entered*/
 		if (*line == '\n')

@@ -31,7 +31,7 @@ typedef struct command
 	char *name;
 	int (*pointer) (char **args, char **env);
 } command;
-extern command **coms;
+command **coms;
 
 int initialize_shell(char **args, char **envp, char **envs);
 int execute(char **args, char **env);
@@ -47,4 +47,8 @@ int add_command(char *, int (*pointer) (char **, char **));
 
 int _putchar(char c);
 int change_dir(__attribute__((unused))char **argv, __attribute__((unused))char **envp);
+int _getline(char *buffer, size_t *n, FILE *stream);
+
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+int break_on_error(char *message);
 #endif

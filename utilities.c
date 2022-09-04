@@ -85,27 +85,13 @@ int _putchar(char c)
 	return (write(STDOUT_FILENO, &c, 1));
 }
 /**
- * _getline - get a line of input from the stdin
- * @buffer: where to store the resulting line
- * @n: the size of the buffer
- * @stream: the stream of input, where we read from
+ * break_on_error - break on error
+ * @message: error message
  *
- * Return: number of chars read
- *
-int _getline(char *buffer, int n, FILE *stream)
+ * Return: -1
+ */
+int break_on_error(char *message)
 {
-	int len;
-
-	if (n == 0 && !buffer)
-	{
-		buffer = malloc(sizeof(char) * 1024);
-		if (!buffer)
-			return (0);
-		len = read(STDIN_FILENO, buffer, 1024);
-	else
-	{
-		len = read(STDIN_FILENO, buffer, n);
-
-	}
-	}
-}*/
+	perror(message);
+	return (-1);
+}
