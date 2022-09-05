@@ -13,14 +13,14 @@
  * @name: name of variable
  * @value: value of variable
  * @next: next variable
- *
+ */
 typedef struct variable
 {
 	char *name;
 	char *value;
-	struct variable next;
+	struct variable *next;
 } var;
-*/
+
 /**
  * struct command - struct of built-in commands
  * @name: name of command
@@ -35,13 +35,15 @@ typedef struct command
 int initialize_shell(char **args, char **envp, char **envs);
 int execute(char **args, char **env);
 char *readline();
-
 char **splitline(char *line, char *delimiter);
+
 char *_strcat(char *dest, char *app);
 int _strlen(char *str);
 
 char *isfile_found(char **path, char *program);
 int print_env(char **args, char **env);
+int set_env(char *name, char *value, int overwrite, char **envp);
+char *get_env(char *env, char **envp);
 int add_command(char *, int (*pointer) (char **, char **), command **);
 
 int _putchar(char c);

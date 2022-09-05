@@ -7,7 +7,8 @@
  *
  * Return: 1 on success, -1 on failure
  */
-int print_env(__attribute__((unused))char **args, __attribute__((unused))char **envp)
+int print_env(__attribute__((unused))char **args,
+		__attribute__((unused))char **envp)
 {
 	int i;
 
@@ -27,12 +28,13 @@ int print_env(__attribute__((unused))char **args, __attribute__((unused))char **
  *
  * Return: 1 on success, -1 otherwise
  */
-int change_dir(__attribute__((unused))char **argv, __attribute__((unused))char **envp)
+int change_dir(__attribute__((unused))char **args,
+		__attribute__((unused))char **envp)
 {
-	if (argv[2])
+	if (args[2])
 	{
 		perror("chdir");
 		return (-1);
 	}
-	return (chdir(argv[1]));
-}			
+	return (chdir(args[1]));
+}

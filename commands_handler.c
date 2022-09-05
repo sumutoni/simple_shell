@@ -3,6 +3,7 @@
 /**
  * check_command - checks if command already exists
  * @name: name of command
+ * @coms: array containing builtin commands
  *
  * Return: 1 if it exists, 0 if not
  */
@@ -15,7 +16,7 @@ int check_command(char *name, command **coms)
 	for (i = 0; coms[i]; i++)
 	{
 		if (!(coms[i]->name) && strcmp(coms[i]->name, name) == 0)
-				return (1);
+			return (1);
 	}
 	return (0);
 }
@@ -23,6 +24,7 @@ int check_command(char *name, command **coms)
  * add_command - adds a command to array of commands
  * @name: name of command
  * @pointer: function pointer to command
+ * @coms: array containing builtin commands
  *
  * Return: 1 for success -1 for failure
  */
@@ -35,7 +37,7 @@ int add_command(char *name, int (*pointer) (char **, char **), command **coms)
 		return (-1);
 	if (check_command(name, coms))
 		return (1);
-	
+
 	com = malloc(sizeof(command));
 	if (!com)
 	{
@@ -50,7 +52,7 @@ int add_command(char *name, int (*pointer) (char **, char **), command **coms)
 		count++;
 		coms++;
 	}
-	_realloc(coms, count, count+1);
+	_realloc(coms, count, count + 1);
 	for (i = 0; i < (count + 1); i++)
 	{
 		if (!coms[i])
@@ -58,20 +60,6 @@ int add_command(char *name, int (*pointer) (char **, char **), command **coms)
 			coms[i] = com;
 		}
 	}
-	/*
-	count++;
-	sub = malloc(sizeof(command *) * count);
-	if (!sub)
-		return (-1);
-	sub = coms;
-	coms = malloc(sizeof(command *) * count);
-	while (*sub)
-	{
-		*coms = *sub;
-		sub++;
-		coms++;
-	}
-	*coms = com;
-	*/
+
 	return (1);
 }

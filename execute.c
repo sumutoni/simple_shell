@@ -3,6 +3,7 @@
 /**
  * execute - execute command passed to the shell
  * @args: pointer to line containing command and arguments
+ * @env: array of environment environment variables
  *
  * Return: 1 for success, -1 for failure
  */
