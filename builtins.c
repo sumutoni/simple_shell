@@ -38,3 +38,12 @@ int change_dir(__attribute__((unused))char **args,
 	}
 	return (chdir(args[1]));
 }
+/**
+ * __exit - exit out of a process
+ * @status: exit status
+ */
+void __exit(int status)
+{
+	exit(status);
+
+}

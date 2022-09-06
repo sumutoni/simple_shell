@@ -27,8 +27,6 @@ int main(__attribute__((unused))int ac,
 			continue;
 		arguments = splitline(line, delim);
 
-		if (strcmp(arguments[0], "exit") == 0)
-			break;
 		status = execute(arguments, envs);
 		if (status == -1)
 			status = initialize_shell(arguments, path, envs);
