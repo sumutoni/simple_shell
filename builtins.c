@@ -7,7 +7,8 @@
  *
  * Return: 1 on success, -1 on failure
  */
-int print_env(__attribute__((unused))char **args, __attribute__((unused))char **envp)
+int print_env(__attribute__((unused))char **args,
+		__attribute__((unused))char **envp)
 {
 	int i;
 
@@ -27,23 +28,33 @@ int print_env(__attribute__((unused))char **args, __attribute__((unused))char **
  *
  * Return: 1 on success, -1 otherwise
  */
-int change_dir(__attribute__((unused))char **argv, __attribute__((unused))char **envp)
+int change_dir(__attribute__((unused))char **args,
+		__attribute__((unused))char **envp)
 {
 	char *env = malloc(sizeof(char) * 255);
 	char *buf = malloc(sizeof(char) * 255);
 	
-	if (argv[2])
+	if (args[2])
 	{
 		perror("chdir");
 		return (-1);
 	}
 	buf = getcwd(buf, 255);
-	if (!argv[1])
+	if (!args[1])
 		env = getenv("HOME");
-	else if (*argv[1] == '-')
+	else if (*args[1] == '-')
 		env = getenv("OLDPWD");
 	else
-		env = argv[1];
+		env = args[1];
 	setenv("OLDPWD", buf, 1);
 	return (chdir(env) + 1);
+}
+/**
+ * __exit - exit out of a process
+ * @status: exit status
+ */
+void __exit(int status)
+{
+	exit(status);
+
 }

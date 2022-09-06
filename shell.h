@@ -35,13 +35,15 @@ typedef struct command
 int initialize_shell(char **args, char **envp, char **envs);
 int execute(char **args, char **env);
 char *readline();
-
 char **splitline(char *line, char *delimiter);
+
 char *_strcat(char *dest, char *app);
 int _strlen(char *str);
 
 char *isfile_found(char **path, char *program);
 int print_env(char **args, char **env);
+int set_env(char *name, char *value, int overwrite, char **envp);
+char *get_env(char *env, char **envp);
 int add_command(char *, int (*pointer) (char **, char **), command **);
 
 int _putchar(char c);
@@ -52,4 +54,5 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 int break_on_error(char *message);
 char *_strtok(char *str, char *delim);
 
+void __exit(int status);
 #endif

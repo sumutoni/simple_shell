@@ -76,7 +76,8 @@ int _getline(char *buffer, size_t *n, FILE *stream)
 		if (!buffer)
 			break_on_error("malloc");
 	}
-	if ((rd = read(fd, buffer, 1024)) == -1)
+	rd = read(fd, buffer, 1024);
+	if (rd == -1)
 		break_on_error("malloc");
 
 	for (i = 0; i < rd; i++)
@@ -87,7 +88,7 @@ int _getline(char *buffer, size_t *n, FILE *stream)
 	buffer[++i] = '\0';
 
 	close(fd);
-	return(i);
+	return (i);
 }
 /**
  * _strtok - string tokenizer

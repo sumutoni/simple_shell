@@ -2,10 +2,14 @@
 
 /**
  * main - launches the shell
+ * @ac: number of arguments
+ * @av: array of arguments
+ * @envs: array of environment variables
  *
  * Return: 0 for success, -1 for failure
  */
-int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char **envs)
+int main(__attribute__((unused))int ac,
+	__attribute__((unused))char **av, char **envs)
 {
 	int status;
 	char **arguments;
@@ -23,8 +27,6 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 			continue;
 		arguments = splitline(line, delim);
 
-		if (strcmp(arguments[0], "exit") == 0)
-			break;
 		status = execute(arguments, envs);
 		if (status == -1)
 			status = initialize_shell(arguments, path, envs);

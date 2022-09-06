@@ -2,6 +2,7 @@
 /**
  * initialize_shell - initializes shell
  * @args: pointer to arguments passed
+ * @path: PATH variable containing directories to look through
  * @envp: pointer to environment variables
  *
  * Return: 1 if initialization is successful, -1 if failed
@@ -26,7 +27,6 @@ int initialize_shell(char **args, char **path, char **envp)
 		perror("access");
 		return (-1);
 	}
-
 	pid = fork();
 	if (pid < 0)
 	{
