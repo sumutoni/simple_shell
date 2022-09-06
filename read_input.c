@@ -43,13 +43,12 @@ char **splitline(char *args, char *delimiter)
 	arguments = malloc(sizeof(char *) * BUFSIZE);
 	if (!arguments)
 		exit(EXIT_FAILURE);
-	argument = strtok(args, delimiter);
-	while (argument != NULL)
+	argument = _strtok(args, delimiter);
+	while (argument[0] != '\0')
 	{
-		arguments[index] = malloc(sizeof(char) * BUFSIZE);
 		arguments[index] = argument;
 		index++;
-		argument = strtok(NULL, delimiter);
+		argument = _strtok(NULL, delimiter);
 	}
 	arguments[index] = NULL;
 	return (arguments);
@@ -90,4 +89,50 @@ int _getline(char *buffer, size_t *n, FILE *stream)
 	close(fd);
 	return(i);
 }
+/**
+ * _strtok - string tokenizer
+ * @str: the string to parse
+ * @delim: the delimiter to use parsing
+ *
+ * Return: pointer to the new fragment
+ */
+char *_strtok(char *str, char *delim)
+{
+	char *token;
+	static char *remember_me;
+	int i;
 
+	if (str)
+	{
+		remember_me = _realloc(remember_me, _strlen(remember_me), _strlen(str));
+	}
+	token = malloc(sizeof(char) * 255);
+
+	/* string validity checks */
+	if (!remember_me || !token)
+	{
+		break_on_error("malloc");
+		return (NULL);
+	}
+	if(!str && !remember_me)
+	{
+		free(token);
+		break_on_error("invalid pointer");
+		return (NULL);
+	}
+	if (str)
+		strcpy(remember_me, str);
+	/* tokenizing */
+	for (i = 0; remember_me[i] != '\0'; i++)
+	{
+		if (remember_me[i] == *delim)
+			break;
+		token[i] = remember_me[i];
+	}
+	if (token[i - 1] == '\n')
+		token[i - 1] = '\0';
+	token[i] = '\0';
+	remember_me += i + 1;
+	
+	return (token);
+}

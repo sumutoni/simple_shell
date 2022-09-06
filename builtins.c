@@ -29,10 +29,21 @@ int print_env(__attribute__((unused))char **args, __attribute__((unused))char **
  */
 int change_dir(__attribute__((unused))char **argv, __attribute__((unused))char **envp)
 {
+	char *env = malloc(sizeof(char) * 255);
+	char *buf = malloc(sizeof(char) * 255);
+	
 	if (argv[2])
 	{
 		perror("chdir");
 		return (-1);
 	}
-	return (chdir(argv[1]));
-}			
+	buf = getcwd(buf, 255);
+	if (!argv[1])
+		env = getenv("HOME");
+	else if (*argv[1] == '-')
+		env = getenv("OLDPWD");
+	else
+		env = argv[1];
+	setenv("OLDPWD", buf, 1);
+	return (chdir(env) + 1);
+}

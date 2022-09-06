@@ -8,16 +8,17 @@
  */
 int execute(char **args, char **env)
 {
-	int i, result = -1;
+	int i, result = -1, size;
 	command **coms;
 
 	if (args == NULL)
 		return (-1);
+	size = 0;
 	coms = malloc(sizeof(command));
 	/*testing if add_command works well*/
-	add_command("env", print_env, coms);
-	add_command("cd", change_dir, coms);
-	for (i = 0; i < 1; i++)
+	size += add_command("env", print_env, coms);
+	size += add_command("cd", change_dir, coms);
+	for (i = 0; i < size; i++)
 	{
 		if (strcmp(args[0], coms[i]->name) == 0)
 		{

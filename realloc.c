@@ -1,6 +1,6 @@
 #include "shell.h"
 
-command **_memcpy(command **dest, command **src, unsigned int n);
+void *_memcpy(void *dest, void *src, unsigned int n);
 
 /**
  * _realloc - change the memory size of memory allocated
@@ -12,13 +12,13 @@ command **_memcpy(command **dest, command **src, unsigned int n);
  * Return: a pointer to the longer string
  *	NULL if malloc fails or new_size = 0
  */
-void *_realloc(command **ptr, unsigned int old_size, unsigned int new_size)
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	command **s;
+	void **s;
 
 	if (ptr == NULL)
 	{
-		s = malloc(sizeof(command *) * new_size);
+		s = malloc(sizeof(ptr) * new_size);
 		return (s);
 	}
 	if (new_size == old_size)
@@ -28,10 +28,10 @@ void *_realloc(command **ptr, unsigned int old_size, unsigned int new_size)
 		free(ptr);
 		return (NULL);
 	}
-	s = malloc(sizeof(command *) * new_size);
+	s = malloc(sizeof(ptr) * new_size);
 	if (s)
 	{
-	return (_memcpy(s, ptr, old_size));
+	return (memcpy(s, ptr, old_size));
 	}
 	free(ptr);
 	ptr = NULL;
@@ -45,8 +45,8 @@ void *_realloc(command **ptr, unsigned int old_size, unsigned int new_size)
  * @n: unassigned int for quantity of copy
  *
  * Return: pointer to the destination memory
- */
-command **_memcpy(command **dest, command **src, unsigned int n)
+ *
+void *_memcpy(void *dest, void *src, unsigned int n)
 {
 	unsigned int i;
 
@@ -61,4 +61,4 @@ command **_memcpy(command **dest, command **src, unsigned int n)
 	src = NULL;
 	return (dest);
 }
-
+*/
