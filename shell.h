@@ -13,14 +13,14 @@
  * @name: name of variable
  * @value: value of variable
  * @next: next variable
- *
+ */
 typedef struct variable
 {
 	char *name;
 	char *value;
-	struct variable next;
+	struct variable *next;
 } var;
-*/
+
 /**
  * struct command - struct of built-in commands
  * @name: name of command
