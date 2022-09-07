@@ -8,11 +8,12 @@
  */
 char *get_env(char *env)
 {
-	char *s;
+	char *s, *val;
 	int i;
 
 	s = malloc(sizeof(char) * 1024);
-	if (!s)
+	val = malloc(sizeof(char) * 1024);
+	if (!s || !val)
 		return (NULL);
 	if (!env)
 		return (NULL);
@@ -22,7 +23,8 @@ char *get_env(char *env)
 	{
 		if (strstr(envp[i], env))
 		{
-			strtok(envp[i], "=");
+			strcpy(val, envp[i]);
+			strtok(val, "=");
 			s = strtok(NULL, "=");
 			break;
 		}
