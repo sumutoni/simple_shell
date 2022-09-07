@@ -24,7 +24,7 @@ int initialize_shell(char **args, char **path, char **envp)
 		program_file = isfile_found(path, args[0]);
 	if (!program_file)
 	{
-		perror("access");
+		p_error(args[0]);
 		return (-1);
 	}
 	pid = fork();

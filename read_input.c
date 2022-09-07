@@ -115,7 +115,7 @@ char *_strtok(char *str, char *delim)
 		break_on_error("malloc");
 		return (NULL);
 	}
-	if(!str && !remember_me)
+	if (!str && !remember_me)
 	{
 		free(token);
 		break_on_error("invalid pointer");
@@ -134,6 +134,6 @@ char *_strtok(char *str, char *delim)
 		token[i - 1] = '\0';
 	token[i] = '\0';
 	remember_me += i + 1;
-	
+
 	return (token);
 }

@@ -15,8 +15,10 @@ int main(__attribute__((unused))int ac,
 	char **arguments;
 	char *line, *delim, *path_env, **path;
 
+	envp = envs;
+	arg = *av;
 	delim = " \n";
-	path_env = getenv("PATH");
+	path_env = get_env("PATH");
 	path = splitline(path_env, ":");
 	do {
 		_putchar('$');
@@ -29,7 +31,7 @@ int main(__attribute__((unused))int ac,
 
 		status = execute(arguments, envs);
 		if (status == -1)
-			status = initialize_shell(arguments, path, envs);
+			status = initialize_shell(arguments, path, envp);
 	} while (status);
 	return (status);
 }

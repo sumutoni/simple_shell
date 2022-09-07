@@ -33,7 +33,7 @@ int change_dir(__attribute__((unused))char **args,
 {
 	char *env = malloc(sizeof(char) * 255);
 	char *buf = malloc(sizeof(char) * 255);
-	
+
 	if (args[2])
 	{
 		perror("chdir");
@@ -41,9 +41,9 @@ int change_dir(__attribute__((unused))char **args,
 	}
 	buf = getcwd(buf, 255);
 	if (!args[1])
-		env = getenv("HOME");
+		env = get_env("HOME");
 	else if (*args[1] == '-')
-		env = getenv("OLDPWD");
+		env = get_env("OLDPWD");
 	else
 		env = args[1];
 	setenv("OLDPWD", buf, 1);
@@ -55,6 +55,7 @@ int change_dir(__attribute__((unused))char **args,
  */
 void __exit(int status)
 {
+	fflush(stdout);
 	exit(status);
 
 }

@@ -14,7 +14,8 @@ char *isfile_found(char **path, char *program)
 
 	for (i = 0; path[i]; i++)
 	{
-		possible_path = _strcat(path[i], program);
+		possible_path = _strcat(path[i], "/");
+		possible_path = _strcat(possible_path, program);
 		if (access(possible_path, F_OK) == 0)
 		{
 			return (possible_path);
@@ -49,9 +50,8 @@ char *_strcat(char *dest, char *app)
 	for (i = 0; dest[i] != '\0'; i++)
 		new_str[i] = dest[i];
 
-	new_str[i] = '/';
 
-	for (j = 0, i++; app[j] != '\0'; j++, i++)
+	for (j = 0; app[j] != '\0'; j++, i++)
 		new_str[i] = app[j];
 	new_str[i] = '\0';
 	return (new_str);

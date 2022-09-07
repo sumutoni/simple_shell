@@ -11,7 +11,7 @@ int execute(char **args, char **env)
 {
 	int i, result = -1, size;
 	command **coms;
-	pid_t pid;
+
 
 	if (args == NULL)
 		return (-1);
@@ -31,18 +31,8 @@ int execute(char **args, char **env)
 	{
 		if (strcmp(args[0], coms[i]->name) == 0)
 		{
-			pid = fork();
-			if (pid == -1)
-				perror("Fork");
-			if (pid == 0)
-			{
-				result = coms[i]->pointer(args, env);
-				return (result);
-			}
-			else
-			{
-				wait(NULL);
-			}
+			result = coms[i]->pointer(args, env);
+			return (result);
 		}
 	}
 	return (result);

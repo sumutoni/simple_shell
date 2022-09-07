@@ -8,6 +8,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+extern int err_no;
+char *arg;
+char **envp;
 /**
  * struct variable - linked list of environment variables
  * @name: name of variable
@@ -43,12 +46,13 @@ int _strlen(char *str);
 char *isfile_found(char **path, char *program);
 int print_env(char **args, char **env);
 int set_env(char *name, char *value, int overwrite, char **envp);
-char *get_env(char *env, char **envp);
+char *get_env(char *env);
 int add_command(char *, int (*pointer) (char **, char **), command **);
 
 int _putchar(char c);
 int change_dir(__attribute__((unused))char **argv, __attribute__((unused))char **envp);
 int _getline(char *buffer, size_t *n, FILE *stream);
+void p_error(char *com);
 
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 int break_on_error(char *message);
