@@ -1,5 +1,4 @@
 #include "shell.h"
-#define BUFSIZE 1024
 
 /**
  * create_list - creates linked list of environment variables
