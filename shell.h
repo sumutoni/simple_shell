@@ -32,7 +32,7 @@ typedef struct variable
 typedef struct command
 {
 	char *name;
-	int (*pointer) (char **args, char **env);
+	int (*pointer)(char **args, char **env);
 } command;
 
 int initialize_shell(char **args, char **envp, char **envs);
@@ -50,7 +50,7 @@ char *get_env(char *env);
 int add_command(char *, int (*pointer) (char **, char **), command **);
 
 int _putchar(char c);
-int change_dir(__attribute__((unused))char **argv, __attribute__((unused))char **envp);
+int change_dir(char **argv, char **envp);
 int _getline(char *buffer, size_t *n, FILE *stream);
 void p_error(char *com);
 
