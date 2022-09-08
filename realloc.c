@@ -47,18 +47,17 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
  * Return: pointer to the destination memory
  *
 void *_memcpy(void *dest, void *src, unsigned int n)
-{
-	unsigned int i;
-
-	for (i = 0; i < n; i++)
-	{
-		dest[i] = src[i];
-	}
-	for (i = 0; src[i]; i++)
-	{
-		free(src[i]);
-	}
-	src = NULL;
-	return (dest);
-}
+*{
+*	unsigned int i;
+*	for (i = 0; i < n; i++)
+*	{
+*		dest[i] = src[i];
+*	}
+*	for (i = 0; src[i]; i++)
+*	{
+*		free(src[i]);
+*	}
+*	src = NULL;
+*	return (dest);
+*}
 */
