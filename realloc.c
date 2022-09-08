@@ -37,27 +37,3 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	ptr = NULL;
 	return (NULL);
 }
-/**
- * _memcpy - copies a memory area from one area of memory
- * to another
- * @src: the pointer to the source array
- * @dest: a pointer to the destination
- * @n: unassigned int for quantity of copy
- *
- * Return: pointer to the destination memory
- *
-void *_memcpy(void *dest, void *src, unsigned int n)
-*{
-*	unsigned int i;
-*	for (i = 0; i < n; i++)
-*	{
-*		dest[i] = src[i];
-*	}
-*	for (i = 0; src[i]; i++)
-*	{
-*		free(src[i]);
-*	}
-*	src = NULL;
-*	return (dest);
-*}
-*/
