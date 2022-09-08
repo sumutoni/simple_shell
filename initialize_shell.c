@@ -1,4 +1,22 @@
 #include "shell.h"
+
+/**
+ * check_path - check if command is absolute path
+ * @args: pointer to arguments
+ * @path: PATH variable containing directories to look through
+ *
+ * Return: path to executable file of command
+ */
+char *check_path(char **args, char **path)
+{
+	char *program_file;
+
+	if (**args == '/')
+		program_file = args[0];
+	else
+		program_file = isfile_found(path, args[0]);
+	return (program_file);
+}
 /**
  * initialize_shell - initializes shell
  * @args: pointer to arguments passed
@@ -18,10 +36,7 @@ int initialize_shell(char **args, char **path, char **envp)
 		perror("getenv");
 		return (-1);
 	}
-	if (**args == '/')
-		program_file = args[0];
-	else
-		program_file = isfile_found(path, args[0]);
+	program_file = check_path(args, path);
 	if (!program_file)
 	{
 		p_error(args[0]);
