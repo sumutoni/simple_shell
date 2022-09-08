@@ -30,22 +30,12 @@ int check_command(char *name, command **coms)
  */
 int add_command(char *name, int (*pointer) (char **, char **), command **coms)
 {
-	command *com;/* **sub;*/
 	int count = 0, i;
 
 	if (!name || !pointer)
 		return (-1);
 	if (check_command(name, coms))
 		return (1);
-
-	com = malloc(sizeof(command));
-	if (!com)
-	{
-		perror("malloc");
-		return (-1);
-	}
-	com->name = name;
-	com->pointer = pointer;
 
 	while (*coms)
 	{
@@ -57,9 +47,10 @@ int add_command(char *name, int (*pointer) (char **, char **), command **coms)
 	{
 		if (!coms[i])
 		{
-			coms[i] = com;
+			coms[i] = malloc(sizeof(command));
+			coms[i]->name = name;
+			coms[i]->pointer = pointer;
 		}
 	}
-
 	return (1);
 }

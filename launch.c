@@ -11,7 +11,7 @@
 int main(__attribute__((unused))int ac,
 	__attribute__((unused))char **av, char **envs)
 {
-	int status;
+	int status, i;
 	char **arguments;
 	char *line, *delim, *path_env, **path;
 
@@ -33,5 +33,19 @@ int main(__attribute__((unused))int ac,
 		if (status == -1)
 			status = initialize_shell(arguments, path, envp);
 	} while (status);
+	free(path_env);
+	free(line);
+	for (i = 0; path[i]; i++)
+	{
+		if (path[i])
+			free(path[i]);
+	}
+	for (i = 0; arguments[i]; i++)
+	{
+		if (arguments[i])
+			free(arguments[i]);
+	}
+	free(path_env);
+	free(arguments);
 	return (status);
 }

@@ -35,5 +35,11 @@ int execute(char **args, char **env)
 			return (result);
 		}
 	}
+	for (i = 0; i < size; i++)
+	{
+		if (coms[i])
+			free(coms[i]);
+	}
+	free(coms);
 	return (result);
 }
