@@ -105,7 +105,7 @@ char *_strtok(char *str, char *delim)
 
 	if (str)
 	{
-		remember_me = _realloc(remember_me, _strlen(remember_me), _strlen(str));
+		remember_me = _realloc(remember_me, _strlen(remember_me), _strlen(str) + 2);
 	}
 	token = _calloc(sizeof(char), 255);
 
@@ -122,16 +122,16 @@ char *_strtok(char *str, char *delim)
 		return (NULL);
 	}
 	if (str)
+	{
 		strcpy(remember_me, str);
+	}
 	/* tokenizing */
-	for (i = 0; remember_me[i] != '\0'; i++)
+	for (i = 0; remember_me[i] != '\n' && remember_me[i] != '\0'; i++)
 	{
 		if (remember_me[i] == *delim)
 			break;
 		token[i] = remember_me[i];
 	}
-	if (token[i - 1] == '\n')
-		token[i - 1] = '\0';
 	token[i] = '\0';
 	remember_me += i + 1;
 
