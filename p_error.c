@@ -43,7 +43,7 @@ void p_error(char *com)
 	int size, size1;
 	char *str, *str1, *err;
 
-	err = malloc(sizeof(char) * 10);
+	err = _calloc(sizeof(char), 10);
 	err_no++;
 	err = _itoa(err_no, err);
 	str1 = _strcat(arg, ": ");

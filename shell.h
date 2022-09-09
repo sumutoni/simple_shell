@@ -54,6 +54,8 @@ int change_dir(char **argv, char **envp);
 int _getline(char *buffer, size_t *n, FILE *stream);
 void p_error(char *com);
 
+void *_calloc(unsigned int size, unsigned int nmemb);
+
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 int break_on_error(char *message);
 char *_strtok(char *str, char *delim);

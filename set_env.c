@@ -12,7 +12,7 @@ var *create_list(int *count, char **envp)
 	var *head, *curr;
 	int i;
 
-	curr = malloc(sizeof(var));
+	curr = _calloc(sizeof(var), 1);
 	if (!curr)
 		return (NULL);
 	i = 0;
@@ -46,7 +46,7 @@ void populate_arr(var *head, int count, char **envp)
 	curr = head;
 	if (count > 0)
 	{
-		env = malloc(sizeof(char *) * (count + 1));
+		env = _calloc(sizeof(char *), (count + 1));
 		if (!env)
 			exit(EXIT_FAILURE);
 	}

@@ -41,7 +41,7 @@ char *_strcat(char *dest, char *app)
 	int i, j;
 	char *new_str;
 
-	new_str = malloc(sizeof(*dest) * _strlen(dest) + _strlen(app) + 1);
+	new_str = _calloc(sizeof(*dest), (_strlen(dest) + _strlen(app) + 1));
 	if (!new_str)
 	{
 		perror("malloc");

@@ -47,7 +47,7 @@ int add_command(char *name, int (*pointer) (char **, char **), command **coms)
 	{
 		if (!coms[i])
 		{
-			coms[i] = malloc(sizeof(command));
+			coms[i] = _calloc(sizeof(command), 1);
 			coms[i]->name = name;
 			coms[i]->pointer = pointer;
 		}

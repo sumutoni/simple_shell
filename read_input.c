@@ -11,7 +11,7 @@ char *readline()
 	size_t buf = BUFSIZE;
 	int bytes;
 
-	line = malloc(sizeof(char) * BUFSIZE);
+	line = _calloc(sizeof(char), BUFSIZE);
 	if (!line)
 		exit(EXIT_SUCCESS);
 	bytes = getline(&line, &buf, stdin);
@@ -40,7 +40,7 @@ char **splitline(char *args, char *delimiter)
 	char *argument;
 	int index = 0;
 
-	arguments = malloc(sizeof(char *) * BUFSIZE);
+	arguments = _calloc(sizeof(char *), BUFSIZE);
 	if (!arguments)
 		exit(EXIT_FAILURE);
 	argument = _strtok(args, delimiter);
@@ -72,7 +72,7 @@ int _getline(char *buffer, size_t *n, FILE *stream)
 		return (-1);
 	if ((!buffer) && *n == 0)
 	{
-		buffer = malloc(sizeof(char) * 1024);
+		buffer = _calloc(sizeof(char), 1024);
 		if (!buffer)
 			break_on_error("malloc");
 	}
@@ -107,7 +107,7 @@ char *_strtok(char *str, char *delim)
 	{
 		remember_me = _realloc(remember_me, _strlen(remember_me), _strlen(str));
 	}
-	token = malloc(sizeof(char) * 255);
+	token = _calloc(sizeof(char), 255);
 
 	/* string validity checks */
 	if (!remember_me || !token)

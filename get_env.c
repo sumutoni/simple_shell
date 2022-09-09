@@ -11,8 +11,8 @@ char *get_env(char *env)
 	char *s, *val;
 	int i;
 
-	s = malloc(sizeof(char) * 1024);
-	val = malloc(sizeof(char) * 1024);
+	s = _calloc(sizeof(char), 1024);
+	val = _calloc(sizeof(char), 1024);
 	if (!s || !val)
 		return (NULL);
 	if (!env)

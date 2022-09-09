@@ -31,8 +31,8 @@ int print_env(__attribute__((unused))char **args,
 int change_dir(__attribute__((unused))char **args,
 		__attribute__((unused))char **envp)
 {
-	char *env = malloc(sizeof(char) * 255);
-	char *buf = malloc(sizeof(char) * 255);
+	char *env = _calloc(sizeof(char), 255);
+	char *buf = _calloc(sizeof(char), 255);
 
 	if (args[2])
 	{
@@ -47,7 +47,11 @@ int change_dir(__attribute__((unused))char **args,
 	else
 		env = args[1];
 	setenv("OLDPWD", buf, 1);
-	return (chdir(env) + 1);
+	chdir(env);
+	free(buf);
+	free(env);
+	env = buf = NULL;
+	return (1);
 }
 /**
  * __exit - exit out of a process

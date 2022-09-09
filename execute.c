@@ -16,7 +16,7 @@ int execute(char **args, char **env)
 	if (args == NULL)
 		return (-1);
 	size = 0;
-	coms = malloc(sizeof(command));
+	coms = _calloc(sizeof(command), 1);
 	/*testing if add_command works well*/
 	size += add_command("env", print_env, coms);
 	size += add_command("cd", change_dir, coms);
