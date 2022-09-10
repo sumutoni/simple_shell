@@ -8,12 +8,11 @@
  */
 char *get_env(char *env)
 {
-	char *s, *val;
+	char *val;
 	int i;
 
-	s = _calloc(sizeof(char), 1024);
 	val = _calloc(sizeof(char), 1024);
-	if (!s || !val)
+	if (!val)
 		return (NULL);
 	if (!env)
 		return (NULL);
@@ -21,13 +20,11 @@ char *get_env(char *env)
 		return (NULL);
 	for (i = 0; envp[i]; i++)
 	{
-		if (strstr(envp[i], env))
+		if (strncmp(envp[i], env, _strlen(env)) == 0)
 		{
-			strcpy(val, envp[i]);
-			strtok(val, "=");
-			s = strtok(NULL, "=");
+			strcpy(val, envp[i] + _strlen(env));
 			break;
 		}
 	}
-	return (s);
+	return (val);
 }

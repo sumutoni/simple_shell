@@ -61,4 +61,5 @@ int break_on_error(char *message);
 char *_strtok(char *str, char *delim);
 
 void __exit(int status);
+int free2D(char **p);
 #endif

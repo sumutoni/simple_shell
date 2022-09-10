@@ -20,6 +20,7 @@ int execute(char **args, char **env)
 	/*testing if add_command works well*/
 	size += add_command("env", print_env, coms);
 	size += add_command("cd", change_dir, coms);
+	coms[size] = NULL;
 	if (strcmp(args[0], "exit") == 0)
 	{
 		if (args[1] == NULL)

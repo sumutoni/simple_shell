@@ -44,7 +44,7 @@ char **splitline(char *args, char *delimiter)
 	if (!arguments)
 		exit(EXIT_FAILURE);
 	argument = _strtok(args, delimiter);
-	while (argument[0] != '\0')
+	while (argument)
 	{
 		arguments[index] = argument;
 		index++;
@@ -100,25 +100,26 @@ int _getline(char *buffer, size_t *n, FILE *stream)
 char *_strtok(char *str, char *delim)
 {
 	char *token;
-	static char *remember_me;
+	static char *remember_me, *start;
 	int i;
 
 	if (str)
 	{
+		if (remember_me)
+			free(remember_me);
 		remember_me = _realloc(remember_me, _strlen(remember_me), _strlen(str) + 2);
+		start = remember_me;
 	}
 	token = _calloc(sizeof(char), 255);
 
 	/* string validity checks */
-	if (!remember_me || !token)
+	if (!token)
 	{
-		break_on_error("malloc");
 		return (NULL);
 	}
 	if (!str && !remember_me)
 	{
 		free(token);
-		break_on_error("invalid pointer");
 		return (NULL);
 	}
 	if (str)
@@ -134,6 +135,9 @@ char *_strtok(char *str, char *delim)
 	}
 	token[i] = '\0';
 	remember_me += i + 1;
+
+	if (*remember_me == '\0')
+		free(start), remember_me = NULL;
 
 	return (token);
 }

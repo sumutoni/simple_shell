@@ -1,4 +1,6 @@
 #include "shell.h"
+#define ALLOCATED 1
+#define NOT_ALLOCATED 0
 
 /**
  * print_env - print the environment variables
@@ -31,7 +33,8 @@ int print_env(__attribute__((unused))char **args,
 int change_dir(__attribute__((unused))char **args,
 		__attribute__((unused))char **envp)
 {
-	char *env = _calloc(sizeof(char), 255);
+	int state;
+	char *env;
 	char *buf = _calloc(sizeof(char), 255);
 
 	if (args[2])
@@ -39,18 +42,25 @@ int change_dir(__attribute__((unused))char **args,
 		perror("chdir");
 		return (-1);
 	}
+	state = NOT_ALLOCATED;
 	buf = getcwd(buf, 255);
 	if (!args[1])
+	{
 		env = get_env("HOME");
+		state = ALLOCATED;
+	}
 	else if (*args[1] == '-')
+	{
 		env = get_env("OLDPWD");
+		state = ALLOCATED;
+	}
 	else
 		env = args[1];
 	setenv("OLDPWD", buf, 1);
 	chdir(env);
 	free(buf);
-	free(env);
-	env = buf = NULL;
+	if (state)
+		free(env);
 	return (1);
 }
 /**
