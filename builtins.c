@@ -67,9 +67,8 @@ int change_dir(__attribute__((unused))char **args,
  * __exit - exit out of a process
  * @status: exit status
  */
-void __exit(int status)
+int __exit(int status)
 {
-	fflush(stdout);
-	exit(status);
+	return (status);
 
 }

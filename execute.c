@@ -26,11 +26,12 @@ int execute(char **args, char **env)
 	{
 		if (args[1] == NULL)
 		{
-			free2D_struct_pointers(coms);
-			return (0);
+			result = __exit(0);
 		}
 		else
-			__exit(atoi(args[1]));
+		{
+			result = __exit(atoi(args[1]));
+		}
 	}
 	for (i = 0; i < size; i++)
 	{

@@ -21,8 +21,6 @@ int main(__attribute__((unused))int ac,
 	path_env = get_env("PATH");
 	path = splitline(path_env, ":");
 	do {
-		_putchar('$');
-		_putchar(' ');
 		line = readline();
 		/* condition to check if newline character is entered*/
 		if (*line == '\n')
@@ -35,7 +33,7 @@ int main(__attribute__((unused))int ac,
 		free(line);
 		line = NULL;
 		free2D(arguments);
-	} while (status);
+	} while (status == 1);
 	free(path_env);
 	free2D(path);
 	return (status);
