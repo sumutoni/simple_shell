@@ -33,9 +33,11 @@ int main(__attribute__((unused))int ac,
 		if (status == -1)
 			status = initialize_shell(arguments, path, envp);
 		free(line);
+		line = NULL;
 		free2D(arguments);
 	} while (status);
 	free(path_env);
+	free2D(path);
 	return (status);
 }
 /**
@@ -54,5 +56,6 @@ int free2D(char **p)
 		p[i] = NULL;
 	}
 	free(p);
+	p = NULL;
 	return (1);
 }

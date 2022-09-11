@@ -42,7 +42,6 @@ int add_command(char *name, int (*pointer) (char **, char **), command **coms)
 		count++;
 		coms++;
 	}
-	_realloc((void *)coms, count, count + 1);
 	for (i = 0; i < (count + 1); i++)
 	{
 		if (!coms[i])
@@ -50,6 +49,7 @@ int add_command(char *name, int (*pointer) (char **, char **), command **coms)
 			coms[i] = _calloc(sizeof(command), 1);
 			coms[i]->name = name;
 			coms[i]->pointer = pointer;
+			break;
 		}
 	}
 	return (1);

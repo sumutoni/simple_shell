@@ -62,4 +62,6 @@ char *_strtok(char *str, char *delim);
 
 void __exit(int status);
 int free2D(char **p);
+
+int free2D_struct_pointers(command **p);
 #endif

@@ -16,15 +16,19 @@ int execute(char **args, char **env)
 	if (args == NULL)
 		return (-1);
 	size = 0;
-	coms = _calloc(sizeof(command), 1);
+	coms = _calloc(sizeof(command), 10);
 	/*testing if add_command works well*/
 	size += add_command("env", print_env, coms);
 	size += add_command("cd", change_dir, coms);
+	free(coms[size]);
 	coms[size] = NULL;
 	if (strcmp(args[0], "exit") == 0)
 	{
 		if (args[1] == NULL)
-			__exit(0);
+		{
+			free2D_struct_pointers(coms);
+			return (0);
+		}
 		else
 			__exit(atoi(args[1]));
 	}
@@ -36,11 +40,26 @@ int execute(char **args, char **env)
 			return (result);
 		}
 	}
-	for (i = 0; i < size; i++)
-	{
-		if (coms[i])
-			free(coms[i]);
-	}
-	free(coms);
+	free2D_struct_pointers(coms);
 	return (result);
+}
+
+/**
+ * free2D_struct_pointers - free a 2D pointer
+ * @p: pointer
+ * 
+ * Return: 1 on success
+ */
+int free2D_struct_pointers(command **p)
+{
+	int i;
+
+	for (i = 0; p[i]; i++)
+	{
+		free(p[i]);
+		p[i] = NULL;
+	}
+	free(p);
+	p = NULL;
+	return (1);
 }
