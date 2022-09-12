@@ -26,7 +26,7 @@ int execute(char **args, char **env)
 	{
 		if (args[1] == NULL)
 		{
-			result = __exit(0);
+			result = __exit(2);
 		}
 		else
 		{
