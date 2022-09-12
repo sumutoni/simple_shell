@@ -40,7 +40,7 @@ int initialize_shell(char **args, char **path, char **envp)
 	if (!program_file)
 	{
 		p_error(args[0]);
-		return (-1);
+		return (2);
 	}
 	pid = fork();
 	if (pid < 0)
