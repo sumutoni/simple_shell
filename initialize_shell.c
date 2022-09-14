@@ -12,7 +12,7 @@ char *check_path(char **args, char **path)
 	char *program_file;
 
 	if (**args == '/')
-		program_file = args[0];
+		program_file = strdup(args[0]);
 	else
 		program_file = isfile_found(path, args[0]);
 	return (program_file);
